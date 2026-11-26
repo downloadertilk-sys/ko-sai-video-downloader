@@ -1,1 +1,49 @@
 
+
+name: Build Ko Sai Android APK
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Extract Project ZIP
+        run: |
+          unzip -o Ko-Sai-Video-Downloader-v1.0.0-starter.zip
+          cd ko-sai-video-downloader
+          npm install
+          npx cap add android
+          npm run build
+          npx cap sync android
+
+      - name: Setup Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '21'
+
+      - name: Build APK
+        working-directory: ko-sai-video-downloader/android
+        run: chmod +x gradlew && ./gradlew assembleDebug
+
+      - name: Upload APK
+        uses: actions/upload-artifact@v4
+        with:
+          name: Ko-Sai-Video-Downloader-APK
+          path: ko-sai-video-downloader/android/app/build/outputs/apk/debug/app-debug.apk
