@@ -1,0 +1,54 @@
+
+name: Deploy Ko Sai Website
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Extract Project ZIP
+        run: |
+          unzip -o Ko-Sai-Video-Downloader-v1.0.0-starter.zip
+
+      - name: Install and Build Website
+        working-directory: ko-sai-video-downloader
+        run: |
+          npm install
+          npm run build -- --base=/ko-sai-video-downloader/
+
+      - name: Upload Website
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ko-sai-video-downloader/dist
+
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
