@@ -1,0 +1,6 @@
+{
+  "appId": "com.kosai.videodownloader",
+  "appName": "Ko Sai Video Downloader",
+  "webDir": "dist",
+  "bundledWebRuntime": false
+}

@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="my">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#0b0f18"><title>Ko Sai Video</title>
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+<div id="app">
+  <header class="topbar">
+    <div class="brand"><div class="logo">▶</div><div><b>Ko Sai</b><small>VIDEO</small></div></div>
+    <form class="top-search" id="searchForm"><input id="searchInput" placeholder="ဗီဒီယို ရှာဖွေပါ…" aria-label="Search videos"><button aria-label="Search">⌕</button></form>
+    <button id="theme" class="icon-btn" aria-label="Toggle theme">☼</button>
+  </header>
+  <nav class="chips" aria-label="Categories">
+    <button class="chip active" data-category="all">အားလုံး</button><button class="chip" data-category="music">သီချင်း</button><button class="chip" data-category="gaming">ဂိမ်း</button><button class="chip" data-category="education">ပညာရေး</button><button class="chip" data-category="live">Live</button>
+  </nav>
+  <main>
+    <section id="home" class="page active">
+      <div class="section-head"><div><p class="eyebrow">DISCOVER</p><h1>ဗီဒီယိုများ</h1></div><span class="subtle">Ko Sai Video</span></div>
+      <div class="feed-grid" id="feedGrid">
+        <article class="video-card"><button class="thumb thumb-one" data-demo="https://www.youtube.com/results?search_query=Myanmar+music"><span class="play">▶</span><span class="duration">YouTube တွင်ရှာရန်</span></button><div class="video-meta"><div class="avatar">K</div><div><h3>မြန်မာသီချင်းများ</h3><p>YouTube မှာ ရှာဖွေကြည့်ရန်</p></div><button class="more">⋮</button></div></article>
+        <article class="video-card"><button class="thumb thumb-two" data-demo="https://www.youtube.com/results?search_query=Myanmar+education"><span class="play">▶</span><span class="duration">YouTube တွင်ရှာရန်</span></button><div class="video-meta"><div class="avatar purple">K</div><div><h3>ပညာရေးနှင့် ဗဟုသုတ</h3><p>YouTube မှာ ရှာဖွေကြည့်ရန်</p></div><button class="more">⋮</button></div></article>
+        <article class="video-card"><button class="thumb thumb-three" data-demo="https://www.youtube.com/results?search_query=Myanmar+gaming"><span class="play">▶</span><span class="duration">YouTube တွင်ရှာရန်</span></button><div class="video-meta"><div class="avatar orange">K</div><div><h3>Gaming ဗီဒီယိုများ</h3><p>YouTube မှာ ရှာဖွေကြည့်ရန်</p></div><button class="more">⋮</button></div></article>
+        <article class="video-card"><button class="thumb thumb-four" data-demo="https://www.youtube.com/results?search_query=Myanmar+documentary"><span class="play">▶</span><span class="duration">YouTube တွင်ရှာရန်</span></button><div class="video-meta"><div class="avatar green">K</div><div><h3>မှတ်တမ်းရုပ်ရှင်များ</h3><p>YouTube မှာ ရှာဖွေကြည့်ရန်</p></div><button class="more">⋮</button></div></article>
+      </div>
+      <div class="info-note"><b>ရှာဖွေမှုအကြောင်း</b><p>လက်ရှိတွင် YouTube ရဲ့ တရားဝင် Search စာမျက်နှာသို့ ချိတ်ဆက်ပေးထားပါတယ်။ Ko Sai အတွင်းမှာ ရလဒ်တွေကို တိုက်ရိုက်ပြသဖို့ YouTube Data API Key လိုအပ်ပါတယ်။</p></div>
+    </section>
+    <section id="youtube" class="page">
+      <div class="section-head"><div><p class="eyebrow">WATCH</p><h1>YouTube Player</h1></div></div>
+      <form class="search-panel" id="urlForm"><input id="yturl" placeholder="YouTube Video URL ထည့်ပါ"><button>ဖွင့်မယ်</button></form>
+      <div id="player" class="player"><div class="playmark">▶</div><p>Video URL ထည့်ပြီး ကြည့်မယ်ကို နှိပ်ပါ</p></div>
+      <p class="tiny subtle">YouTube ၏ တရားဝင် Embed Player ဖြင့်သာ ဖွင့်ပေးသည်။</p>
+    </section>
+    <section id="downloads" class="page">
+      <div class="section-head"><div><p class="eyebrow">YOUR MEDIA</p><h1>Media သိမ်းဆည်းရန်</h1></div></div>
+      <p class="subtle">ကိုယ်ပိုင် သို့မဟုတ် သိမ်းဆည်းခွင့်ရှိသော Media ဖိုင်ကို ရွေးပါ။</p>
+      <label class="filepick">＋ ဖိုင်ရွေးရန်<input id="mediaFile" type="file" accept="audio/*,video/*"></label>
+      <div id="fileInfo" class="file-info">ဖိုင်မရွေးရသေးပါ။</div>
+      <div class="format-box"><h2>♫ MP3 Audio</h2><label>အသံအရည်အသွေး<select id="audioQuality"><option value="128">128 kbps</option><option value="192" selected>192 kbps</option><option value="256">256 kbps</option><option value="320">320 kbps</option></select></label><button id="mp3" class="primary full">MP3 သိမ်းရန်</button></div>
+      <div class="format-box"><h2>▣ MP4 Video</h2><label>ဗီဒီယို Resolution<select id="videoQuality"><option value="360p">360p</option><option value="480p" selected>480p · SD</option><option value="720p">720p · HD</option><option value="1080p">1080p · Full HD</option><option value="1440p">2K</option><option value="2160p">4K</option></select></label><button id="mp4" class="primary full">MP4 သိမ်းရန်</button></div>
+      <div class="info-note"><b>မှတ်ချက်</b><p>ဒီဗားရှင်းမှာ Format နဲ့ Quality ရွေးချယ်မှု UI ကို ထည့်ထားပါတယ်။ အမှန်တကယ် MP3/MP4 ပြောင်းလဲခြင်း၊ 2K/4K Export လုပ်ခြင်းအတွက် Media Engine ကို ထပ်ချိတ်ဆက်ရပါမယ်။ ရရှိနိုင်တဲ့ Quality ဟာ မူရင်းဖိုင်ပေါ်မူတည်ပါတယ်။</p></div>
+    </section>
+    <section id="history" class="page"><div class="section-head"><div><p class="eyebrow">LIBRARY</p><h1>မှတ်တမ်း</h1></div></div><div id="historyList" class="empty">မှတ်တမ်းမရှိသေးပါ။</div><button id="clearHistory" class="secondary">မှတ်တမ်းရှင်းမယ်</button></section>
+  </main>
+  <nav class="bottom-nav"><button class="nav-item active" data-page="home"><b>⌂</b><span>ပင်မ</span></button><button class="nav-item" data-page="youtube"><b>▣</b><span>YouTube</span></button><button class="nav-item" data-page="downloads"><b>↓</b><span>သိမ်းဆည်းရန်</span></button><button class="nav-item" data-page="history"><b>◷</b><span>မှတ်တမ်း</span></button></nav>
+</div>
+<script type="module" src="./src.js"></script>
+</body></html>
